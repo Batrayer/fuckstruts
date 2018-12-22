@@ -1,0 +1,19 @@
+html {
+	min-height: 100%;
+}
+
+body {
+	height: 100%;
+}
+
+.background {
+	background-image: url("back.jpg");
+	background-repeat: repeat-y repeat-x;
+}
+
+.container {
+	min-width: 80%;
+	padding-top: 50px;
+	background-color: white;
+	height: 100vh;
+}

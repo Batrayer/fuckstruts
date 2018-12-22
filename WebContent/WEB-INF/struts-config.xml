@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+    <form-beans>
+     
+        <form-bean name="ConnexionValidationForm" type="nanterre.miage.baptiste.validationform.ConnexionValidationForm" />
+    <!--
+    	<form-bean name="AddContactValidationForm" type="org.lip6.struts.actionForm.AddContactValidationForm" />
+        <form-bean name="DeleteSelectedValidationForm" type="org.lip6.struts.actionForm.DeleteSelectedValidationForm" />
+        <form-bean name="ModifierBDDContactValidationForm" type="org.lip6.struts.actionForm.ModifierBDDContactValidationForm" />
+        <form-bean name="AddEntrepriseValidationForm" type="org.lip6.struts.actionForm.AddEntrepriseValidationForm" />
+        <form-bean name="AddContactGroupValidationForm" type="org.lip6.struts.actionForm.AddContactGroupValidationForm" />
+        <form-bean name="RechercheContactValidationForm" type="org.lip6.struts.actionForm.RechercheContactValidationForm" />
+        <form-bean name="GetContactEntrepriseValidationForm" type="org.lip6.struts.actionForm.GetContactEntrepriseValidationForm" />
+        <form-bean name="GetContactGroupValidationForm" type="org.lip6.struts.actionForm.GetContactGroupValidationForm" />
+	-->
+    </form-beans>
+    <global-exceptions>
+    <!-- <exception key="global.error.exception" type="java.lang.Exception" handler="org.lip6.struts.exception.ExceptionHandler" path="/pages/failure.jsp">
+        </exception>
+    -->
+    </global-exceptions>
+    <global-forwards>
+        <!-- <forward name="exception" path="/pages/failure.jsp"></forward>-->
+    </global-forwards>
+
+    <action-mappings>
+    	<!-- 
+        <action path="/AfficherContactGroup" type="org.lip6.struts.servletAction.GetContactGroupAction" name="GetContactGroupValidationForm" scope="request" input="/pages/gestionGroup.jsp">
+            <forward path="/pages/contactAffiche.jsp" name="success"/>
+        </action>
+        <action path="/AfficherContactEntreprise" type="org.lip6.struts.servletAction.GetContactEntrepriseAction" name="GetContactEntrepriseValidationForm" scope="request" input="/pages/entrepriseCreation.jsp">
+            <forward path="/pages/contactAffiche.jsp" name="success"/>
+        </action>
+        <action path="/RechercheContactAction" type="org.lip6.struts.servletAction.RechercheContactAction" name="RechercheContactValidationForm" scope="request" input="/pages/rechercheContact.jsp">
+            <forward path="/pages/contactAffiche.jsp" name="success"/>
+        </action>
+        <action path="/RechercheContact" forward="/pages/rechercheContact.jsp" />
+        <action path="/AddEntrepriseAction" type="org.lip6.struts.servletAction.AjoutEntrepriseAction" name="AddEntrepriseValidationForm" scope="request" input="/pages/entrepriseCreation.jsp">
+            <forward name="success" path="/ContactAffichage.do" redirect="true" />
+        </action>
+        <action path="/EntrepriseCreation" type="org.lip6.struts.servletAction.AfficheEntrepriseAction">
+            <forward name="reussi" path="/pages/entrepriseCreation.jsp" />
+        </action>
+        <action path="/AddContactGroup" type="org.lip6.struts.servletAction.AddContactGroupAction" name="AddContactGroupValidationForm" scope="request" input="gestionGroup.jsp">
+            <forward name="success" path="/GestionGroupe.do" redirect="true" />
+        </action>
+        <action path="/GestionGroupe" type="org.lip6.struts.servletAction.AfficheGroupAction">
+            <forward name="reussi" path="/pages/gestionGroup.jsp" />
+        </action>
+        <action path="/ModifierContact" type="org.lip6.struts.servletAction.ModifierContactAction" scope="request">
+            <forward name="success" path="/pages/modifierContact.jsp" />
+        </action>
+
+
+        <action path="/ModifierBDDContact" type="org.lip6.struts.servletAction.ModifierBDDContactAction" name="ModifierBDDContactValidationForm" scope="request" input="/pages/modifierContact.jsp">
+            <forward name="success" path="/ContactAffichage.do" redirect="true" />
+            <forward name="error" path="/pages/failure.jsp" />
+        </action>
+        <action path="/AddContact" type="org.lip6.struts.servletAction.AddContactAction" name="AddContactValidationForm" scope="request" input="/pages/contactCreation.jsp">
+            <forward name="success" path="/ContactAffichage.do" redirect="true" />
+            <forward name="error" path="/pages/failure.jsp" />
+        </action>
+
+        <action path="/DeleteSelected" type="org.lip6.struts.servletAction.DeleteSelectedAction" name="DeleteSelectedValidationForm" scope="request" input="/pages/contactAffiche.jsp">
+            <forward name="success" path="/ContactAffichage.do" redirect="true" />
+        </action>
+		-->
+        <action path="/Connexion" type="nanterre.miage.baptiste.servlet.ConnexionAction" name="ConnexionValidationForm" scope="request" input="/pages/main.jsp">
+            <forward name="success" path="/ContactAffichage.do" redirect="true" />
+            <forward name="error" path="/pages/main.jsp" />
+        </action>
+		
+        <action path="/ContactAffichage" type="nanterre.miage.baptiste.servlet.ConnexionAction" scope="request" >
+            <forward name="reussi" path="/pages/contactAffiche.jsp" />
+        </action>
+		<!-- 
+        <action path="/ContactCreation" type="org.lip6.struts.servletAction.ContactCreationAction" scope="request">
+            <forward name="success" path="/pages/contactCreation.jsp" />
+        </action>
+		 -->
+
+
+    </action-mappings>
+    <!-- ========== Ressources de definitions de messages =========================== -->
+    <message-resources parameter="Resources" />
+</struts-config>

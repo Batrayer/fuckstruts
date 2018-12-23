@@ -9,7 +9,11 @@ public class ConnexionValidationForm extends ActionForm{
 	private static final long serialVersionUID = 1L;
 	private String username = null;
 	private String password = null;
-
+	
+	public ConnexionValidationForm() {
+		super();
+	}
+	
 	public String getUsername() {
 		return username;
 	}

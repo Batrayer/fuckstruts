@@ -7,7 +7,6 @@ public class UserDAO extends ParentDAO {
 	public UserDAO() {
 		super();
 	}
-	
 	public boolean getConnection(User user) {
 		try {
 			super.loadCurrentSession();
@@ -17,8 +16,6 @@ public class UserDAO extends ParentDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
-		}finally {
-			// super.freeSession();
 		}
 	}
 }

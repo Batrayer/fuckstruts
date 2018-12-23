@@ -27,20 +27,21 @@
 <body>
 <div class="background">
 	<div class="container">
-		<html:form action="/DeleteSelected">
-		<html:errors/>
+
 		<table class="table table-striped">
 			<tr>
 				<th><bean:message key="afficheContact.table.id" /></th>
 				<th><bean:message key="afficheContact.table.nom" /></th>
 				<th><bean:message key="afficheContact.table.prenom" /></th>
 				<th><bean:message key="afficheContact.table.email" /></th>
+				<!-- 
 				<th><bean:message key="afficheContact.table.adresse" /></th>
 				<th><bean:message key="afficheContact.table.ville" /></th>
 				<th><bean:message key="afficheContact.table.pays" /></th>
 				<th><bean:message key="afficheContact.table.codepostal" /></th>
 				<th><bean:message key="afficheContact.table.supprime" /></th>
 				<th><bean:message key="afficheContact.table.modifier" /></th>
+ 				-->
 			</tr>
 	
 			<logic:iterate id="c" name="contact">
@@ -50,6 +51,7 @@
 				<td><bean:write name="c" property="nom" /></td>
 				<td><bean:write name="c" property="prenom" /></td>
 				<td><bean:write name="c" property="email" /></td>
+				<!-- 
 				<td><bean:write name="c" property="adresse" /></td>
 				<td><bean:write name="c" property="ville" /></td>
 				<td><bean:write name="c" property="pays" /></td>
@@ -57,18 +59,22 @@
 				<bean:define id="textVal" name="c" property="id"/>
 			  	<td><html:checkbox property="id" value="<%=textVal.toString() %>" /></td>
 			  	<td><html:link page="/ModifierContact.do" paramId="id" paramName="textVal" ><bean:message key="afficheContact.table.modifier" /></html:link><td>
+				 -->
 			</tr>
 			</logic:iterate>
 
 		</table>
+		<!-- 
 		<html:submit styleClass="btn btn-lg btn-outline-danger"><bean:message key="afficheContact.table.supprime" /></html:submit>
+		-->
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/ContactCreation.do"><bean:message key="main.addContact.link" /></html:link>
+		<!-- 
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/EntrepriseCreation.do"><bean:message key="main.addEntreprise.link" /></html:link>
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/GestionGroupe.do"><bean:message key="main.gestionGroup.link" /></html:link>
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/RechercheContact.do"><bean:message key="main.rechercheContact.link" /></html:link>
 		
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/ContactAffichage.do"><bean:message key="main.contact.affichage" /></html:link>
-		</html:form>
+		 -->
 	</div>
 </div>
 </body>

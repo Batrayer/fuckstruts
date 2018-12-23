@@ -32,6 +32,7 @@
 				<html:text property="prenom" size="30" maxlength="30"/> <br>
 				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.email" /></label>
 				<html:text property="email" size="30" maxlength="30"/> <br>
+				<!-- 
 				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.adresse" /></label>
 				<html:text property="adresse" size="30" maxlength="100"/> <br>
 				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.ville" /></label>
@@ -57,6 +58,7 @@
 					<html:option value="<%=null %>"><bean:message key="addContact.form.noEntreprise" /></html:option>
 					<html:optionsCollection name="ent" value="siret" label="nom"  />
 				</html:select> <br>
+				 -->
 				<html:submit styleClass="btn btn-lg btn-outline-primary"><bean:message key="global.form.submit" /></html:submit>
 		</html:form>
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/ContactAffichage.do"><bean:message key="main.contact.affichage" /></html:link>

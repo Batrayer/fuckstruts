@@ -8,10 +8,11 @@
     <form-beans>
      
         <form-bean name="ConnexionValidationForm" type="nanterre.miage.baptiste.validationform.ConnexionValidationForm" />
-    <!--
-    	<form-bean name="AddContactValidationForm" type="org.lip6.struts.actionForm.AddContactValidationForm" />
-        <form-bean name="DeleteSelectedValidationForm" type="org.lip6.struts.actionForm.DeleteSelectedValidationForm" />
-        <form-bean name="ModifierBDDContactValidationForm" type="org.lip6.struts.actionForm.ModifierBDDContactValidationForm" />
+    	<form-bean name="AddContactValidationForm" type="nanterre.miage.baptiste.validationform.AddContactValidationForm" />
+        <form-bean name="DeleteSelectedValidationForm" type="nanterre.miage.baptiste.validationform.DeleteSelectedValidationForm" />
+        <form-bean name="ModifierBDDContactValidationForm" type="nanterre.miage.baptiste.validationform.ModifierBDDContactValidationForm" />
+        
+        <!-- 
         <form-bean name="AddEntrepriseValidationForm" type="org.lip6.struts.actionForm.AddEntrepriseValidationForm" />
         <form-bean name="AddContactGroupValidationForm" type="org.lip6.struts.actionForm.AddContactGroupValidationForm" />
         <form-bean name="RechercheContactValidationForm" type="org.lip6.struts.actionForm.RechercheContactValidationForm" />
@@ -52,21 +53,22 @@
         <action path="/GestionGroupe" type="org.lip6.struts.servletAction.AfficheGroupAction">
             <forward name="reussi" path="/pages/gestionGroup.jsp" />
         </action>
-        <action path="/ModifierContact" type="org.lip6.struts.servletAction.ModifierContactAction" scope="request">
+
+        -->
+        <action path="/ModifierBDDContact" type="nanterre.miage.baptiste.servlet.ModifierBDDContactAction" name="ModifierBDDContactValidationForm" scope="request" input="/pages/modifierContact.jsp">
+            <forward name="success" path="/ContactAffichage.do" redirect="true" />
+            <forward name="error" path="/pages/failure.jsp" />
+        </action>
+        
+        <action path="/ModifierContact" type="nanterre.miage.baptiste.servlet.ModifierContactAction" scope="request">
             <forward name="success" path="/pages/modifierContact.jsp" />
         </action>
 
 
-        <action path="/ModifierBDDContact" type="org.lip6.struts.servletAction.ModifierBDDContactAction" name="ModifierBDDContactValidationForm" scope="request" input="/pages/modifierContact.jsp">
-            <forward name="success" path="/ContactAffichage.do" redirect="true" />
-            <forward name="error" path="/pages/failure.jsp" />
-        </action>
 
-
-        <action path="/DeleteSelected" type="org.lip6.struts.servletAction.DeleteSelectedAction" name="DeleteSelectedValidationForm" scope="request" input="/pages/contactAffiche.jsp">
+        <action path="/DeleteSelected" type="nanterre.miage.baptiste.servlet.DeleteSelectedAction" name="DeleteSelectedValidationForm" scope="request" input="/pages/contactAffiche.jsp">
             <forward name="success" path="/ContactAffichage.do" redirect="true" />
         </action>
-		-->
         <action path="/Connexion" type="nanterre.miage.baptiste.servlet.ConnexionAction" name="ConnexionValidationForm" scope="request" input="/pages/main.jsp">
             <forward name="success" path="/ContactAffichage.do" redirect="true" />
             <forward name="error" path="/pages/main.jsp" />

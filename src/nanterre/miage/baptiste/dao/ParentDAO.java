@@ -19,6 +19,13 @@ public class ParentDAO {
 		this.session = HibernateUtil.getSessionFactory().openSession();
 	}
 	protected void loadCurrentSession() {
+		System.out.println("Load currentSession");
 		this.session = HibernateUtil.getSessionFactory().getCurrentSession();
+		if (this.session == null) {
+			this.newSession();
+			System.out.println("New session");
+		} else {
+			System.out.println("Old session");
+		}
 	}
 }

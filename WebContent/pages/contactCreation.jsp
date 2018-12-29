@@ -23,7 +23,8 @@
 %>
 <div class="background">
 	<div class="container">
-	<h1><bean:message key="addContact.h1"/></h1>	
+	<h1><bean:message key="addContact.h1"/></h1>
+		<h2><bean:message key="addContact.h2"/></h2>
 			<html:form styleClass="form-group" action="/AddContact">
 				<html:errors/>
 				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.nom" /></label>
@@ -32,33 +33,8 @@
 				<html:text property="prenom" size="30" maxlength="30"/> <br>
 				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.email" /></label>
 				<html:text property="email" size="30" maxlength="30"/> <br>
-				<!-- 
-				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.adresse" /></label>
-				<html:text property="adresse" size="30" maxlength="100"/> <br>
-				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.ville" /></label>
-				<html:text property="ville" size="30" maxlength="30"/> <br>
-				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.pays" /></label>
-				<html:text property="pays" size="30" maxlength="30"/> <br>
-				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.codepostal" /></label>
-				<html:text property="codepostal" size="30" maxlength="30"/> <br>
-				
-				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.phoneKind" /></label>
-				<html:text property="phoneKind" size="30" maxlength="30"/> <br>
-				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.phoneNumber" /></label>
-				<html:text property="phoneNumber" size="30" maxlength="30"/> <br>
-				
-				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.group" /></label>
-				<html:select property="idGroup">
-					<html:option value="<%=null %>"><bean:message key="addContact.form.noGroup" /></html:option>
-					<html:optionsCollection name="cgrp" value="idGroup" label="groupName"  />
-				</html:select> <br>
-				
-				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.entreprise" /></label>
-				<html:select  property="siret">
-					<html:option value="<%=null %>"><bean:message key="addContact.form.noEntreprise" /></html:option>
-					<html:optionsCollection name="ent" value="siret" label="nom"  />
-				</html:select> <br>
-				 -->
+				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.siret" /></label>
+				<html:text property="siret" size="30" maxlength="30"/> <br>
 				<html:submit styleClass="btn btn-lg btn-outline-primary"><bean:message key="global.form.submit" /></html:submit>
 		</html:form>
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/ContactAffichage.do"><bean:message key="main.contact.affichage" /></html:link>

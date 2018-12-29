@@ -1,16 +1,11 @@
 package nanterre.miage.baptiste.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 public class Contact {
 	private int idContact;
 	private String nom;
 	private String prenom;
 	private String email;
-
+	
 	public String getNom() {
 		return nom;
 	}
@@ -35,7 +30,7 @@ public class Contact {
 		this.email = email;
 	}
 
-	public long getIdContact() {
+	public int getIdContact() {
 		return idContact;
 	}
 

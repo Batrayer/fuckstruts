@@ -3,6 +3,8 @@ package nanterre.miage.baptiste.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.StaleObjectStateException;
+
 import nanterre.miage.baptiste.dao.ContactDAO;
 import nanterre.miage.baptiste.model.Contact;
 import nanterre.miage.baptiste.model.Entreprise;
@@ -36,18 +38,9 @@ public class ContactService {
 		return c;
     }
     public Contact differentiateFromForm(ModifierBDDContactValidationForm form) {
-    	Contact c;
-    	System.out.println(form.getSiret());
+    	Contact c = getContactById(Integer.parseInt(form.getIdContact()));
     	if(form.getSiret() != null) {
-    		c = new Entreprise();
     		((Entreprise) c).setSiret(form.getSiret());
-    	} else {
-    		c = new Contact();
-    	}
-    	try {
-        	c.setIdContact(Integer.parseInt(form.getIdContact()));
-    	}catch (Exception e) {
-    		e.printStackTrace();
     	}
     	c.setEmail(form.getEmail());
 		c.setNom(form.getNom());
@@ -57,8 +50,12 @@ public class ContactService {
     public Contact getContactById(int id) {
     	return cdao.getContact(id);
     }
-    public void updateContact(Contact contact) {
-    	cdao.updateContact(contact);
+    public void updateContact(Contact contact) throws StaleObjectStateException {
+    	try {
+        	cdao.updateContact(contact);
+    	} catch (StaleObjectStateException e) {
+    		throw e;
+    	}
     }
     public void addContact(Contact c) {
     	cdao.addContact(c);

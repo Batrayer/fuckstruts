@@ -7,8 +7,8 @@
 	<id name="idContact" type="int" column="idContact" >
 		<generator class="increment"/>
 	</id>
-	
 	<discriminator column="type" type="string"/>
+	<version name="version" access="field" column="VERSION" />
 	
 	<property name="prenom">
 		<column name="prenom" />
@@ -21,8 +21,13 @@
 	<property name="email">
 		<column name="email"/>
 	</property>
+	
+	<many-to-one name="adresse" column="adresse" class="Adresse" cascade="save-update" />
+	
 	<subclass name="Entreprise" discriminator-value="entreprise">
 		<property name="siret" type="string" column="siret"/>
 	</subclass>
+	
+	
   </class>
 </hibernate-mapping>

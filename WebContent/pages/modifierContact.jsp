@@ -35,7 +35,7 @@
 			<html:errors/>
 			
 			<html:hidden property="idContact" name="contact" />
-			
+			<html:hidden property="version" name="contact" />
 			<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.nom" /></label>
 			<html:text property="nom" size="30" maxlength="30" name="contact"/> <br>
 			

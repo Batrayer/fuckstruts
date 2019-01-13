@@ -5,7 +5,8 @@ public class Contact {
 	private String nom;
 	private String prenom;
 	private String email;
-	
+	private Adresse adresse;
+	private int version;
 	public String getNom() {
 		return nom;
 	}
@@ -37,4 +38,21 @@ public class Contact {
 	public void setIdContact(int idContact) {
 		this.idContact = idContact;
 	}
+	
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	
 }

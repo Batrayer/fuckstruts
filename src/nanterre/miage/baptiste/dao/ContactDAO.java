@@ -3,6 +3,7 @@ package nanterre.miage.baptiste.dao;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.StaleObjectStateException;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
@@ -19,7 +20,7 @@ public class ContactDAO extends ParentDAO{
 			super.session.beginTransaction();
 			Contact c = (Contact) super.session.get(Contact.class, id);
 			return c;
-		}finally {
+		} finally {
 			super.freeSession();
 		}
 	}
@@ -30,7 +31,7 @@ public class ContactDAO extends ParentDAO{
 			Transaction tx = super.session.beginTransaction();
 			StringBuffer requete = new StringBuffer();
 			requete.append("select c from Contact c");
-
+			
 			Query results = super.session.createQuery(requete.toString());
 			List<Contact> lst = results.list();
 			return lst;
@@ -54,12 +55,15 @@ public class ContactDAO extends ParentDAO{
 			super.freeSession();
 		}
 	}
-	public void updateContact(Contact contact) {
+	public void updateContact(Contact contact) throws StaleObjectStateException {
 		try {
 			super.newSession();
 			super.session.beginTransaction();
 			super.session.update(contact);
 			super.session.getTransaction().commit();
+		} catch (StaleObjectStateException e) {
+			e.printStackTrace();
+			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

@@ -9,13 +9,15 @@ public class UserDAO extends ParentDAO {
 	}
 	public boolean getConnection(User user) {
 		try {
-			super.loadCurrentSession();
+			super.newSession();
 			super.session.beginTransaction();
 			return !super.session.createCriteria(User.class)
 						.add(Example.create(user)).list().isEmpty();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		} finally {
+			super.freeSession();
 		}
 	}
 }

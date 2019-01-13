@@ -24,6 +24,7 @@ public class ModifierBDDContactValidationForm extends ActionForm {
     private String idPhoneNumber = null;
     private String phoneNumber = null;
     private String phoneKind = null;
+    private int version;
 
     public String getIdPhoneNumber() {
     	return this.idPhoneNumber;
@@ -112,6 +113,14 @@ public class ModifierBDDContactValidationForm extends ActionForm {
     public void setEmail(String email) {
 		this.email = email;
 	}
+    
+    public int getVersion() {
+    	return version;
+    }
+    
+    public void setVersion(int version) {
+    	this.version = version;
+    }
 
 	public void reset(ActionMapping mapping, HttpServletRequest request) {
 		this.email=null;

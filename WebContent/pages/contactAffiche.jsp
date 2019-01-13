@@ -28,6 +28,10 @@
 <body>
 <div class="background">
 	<div class="container">
+		<% if(session.getAttribute("error") != null) {%>
+			<bean:define id="error" name="e" property="err"/>
+			<h2><bean:write name="e" property="err" /></h2>
+		<% } %>
 		<html:form action="/DeleteSelected">
 		<html:errors/>
 		<table class="table table-striped">

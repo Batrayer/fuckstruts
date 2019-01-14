@@ -26,7 +26,7 @@ public class ContactService {
     }
     public Contact differentiateFromForm(AddContactValidationForm form) {
     	Contact c;
-    	if(form.getSiret() != null) {
+    	if(form.getSiret() != null && !"".equals(form.getSiret())) {
     		c = new Entreprise();
     		((Entreprise) c).setSiret(form.getSiret());
     	} else {

@@ -22,7 +22,7 @@
 		<column name="email"/>
 	</property>
 	
-	<many-to-one name="adresse" column="adresse" class="Adresse" cascade="save-update" />
+	<many-to-one name="adresse" column="adresse" class="Adresse" cascade="all" />
 	
 	<subclass name="Entreprise" discriminator-value="entreprise">
 		<property name="siret" type="string" column="siret"/>

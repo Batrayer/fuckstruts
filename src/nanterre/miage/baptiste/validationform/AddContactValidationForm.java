@@ -15,9 +15,6 @@ public class AddContactValidationForm extends ActionForm {
 	private String prenom = null;
 	private String email = null;
     public String adresse = null;
-    public String ville = null;
-    public String pays = null;
-    public String codepostal = null;
     public String siret = null;
     public String idGroup = null;
     public String phoneNumber = null;
@@ -59,24 +56,6 @@ public class AddContactValidationForm extends ActionForm {
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
-    public String getVille() {
-        return ville;
-    }
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
-    public String getPays() {
-        return pays;
-    }
-    public void setPays(String pays) {
-        this.pays = pays;
-    }
-    public String getCodepostal() {
-        return codepostal;
-    }
-    public void setCodepostal(String codepostal) {
-        this.codepostal = codepostal;
-    }
 
 	public String getEmail() {
 		return email;
@@ -107,9 +86,6 @@ public class AddContactValidationForm extends ActionForm {
 		this.prenom=null;
 		this.nom=null;
         this.adresse=null;
-        this.ville=null;
-        this.pays=null;
-        this.codepostal=null;
         this.idGroup=null;
         this.siret=null;
         this.phoneKind=null;
@@ -118,7 +94,7 @@ public class AddContactValidationForm extends ActionForm {
 	public ActionErrors validate(ActionMapping mapping, HttpServletRequest request){
 	    ActionErrors errors = new ActionErrors();
 	    String regexmail = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
-	    String regexnumber = "[0-9]+";
+	    // String regexnumber = "[0-9]+";
 	    if(getEmail()==null || getEmail().length()<1 || !Pattern.matches(regexmail, getEmail())){
 	        errors.add("email", new ActionMessage("addContact.form.add.error.email"));
         }

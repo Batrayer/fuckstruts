@@ -35,6 +35,8 @@
 				<html:text property="email" size="30" maxlength="30"/> <br>
 				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.siret" /></label>
 				<html:text property="siret" size="30" maxlength="30"/> <br>
+				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.adresse" /></label>
+				<html:text property="adresse" size="30" maxlength="100"/> <br>
 				<html:submit styleClass="btn btn-lg btn-outline-primary"><bean:message key="global.form.submit" /></html:submit>
 		</html:form>
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/ContactAffichage.do"><bean:message key="main.contact.affichage" /></html:link>

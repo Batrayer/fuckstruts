@@ -33,7 +33,7 @@ public class ContactDAO extends ParentDAO{
 			requete.append("select c from Contact c");
 			
 			Query results = super.session.createQuery(requete.toString());
-			List<Contact> lst = results.list();
+			List<Contact> lst =  results.list();
 			return lst;
 		} catch (Exception e) {
 			e.printStackTrace();

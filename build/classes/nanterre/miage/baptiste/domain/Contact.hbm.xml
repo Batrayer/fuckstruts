@@ -24,6 +24,10 @@
 	
 	<many-to-one name="adresse" column="adresse" class="Adresse" cascade="all" />
 	
+	<set name="groups" table="contact_group">
+		<key column="idContact"></key>
+		<many-to-many class="Group" column="idGroup"></many-to-many>
+	</set>
 	<subclass name="Entreprise" discriminator-value="entreprise">
 		<property name="siret" type="string" column="siret"/>
 	</subclass>

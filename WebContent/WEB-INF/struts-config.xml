@@ -50,11 +50,12 @@
         <action path="/AddContactGroup" type="org.lip6.struts.servletAction.AddContactGroupAction" name="AddContactGroupValidationForm" scope="request" input="gestionGroup.jsp">
             <forward name="success" path="/GestionGroupe.do" redirect="true" />
         </action>
-        <action path="/GestionGroupe" type="org.lip6.struts.servletAction.AfficheGroupAction">
+        -->
+        <action path="/GestionGroupe" type="nanterre.miage.baptiste.servlet.AfficheGroupAction">
             <forward name="reussi" path="/pages/gestionGroup.jsp" />
         </action>
 
-        -->
+        
         <action path="/ModifierBDDContact" type="nanterre.miage.baptiste.servlet.ModifierBDDContactAction" name="ModifierBDDContactValidationForm" scope="request" input="/pages/modifierContact.jsp">
             <forward name="success" path="/ContactAffichage.do" redirect="true" />
             <forward name="error" path="/pages/failure.jsp" />

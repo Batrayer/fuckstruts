@@ -81,6 +81,8 @@
 		</table>
 		<html:submit styleClass="btn btn-lg btn-outline-danger"><bean:message key="afficheContact.table.supprime" /></html:submit>
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/ContactCreation.do"><bean:message key="main.addContact.link" /></html:link>
+		<html:link styleClass="btn btn-lg btn-outline-primary" page="/GestionGroupe.do"><bean:message key="main.gestionGroup.link" /></html:link>
+		
 		<!-- 
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/EntrepriseCreation.do"><bean:message key="main.addEntreprise.link" /></html:link>
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/GestionGroupe.do"><bean:message key="main.gestionGroup.link" /></html:link>

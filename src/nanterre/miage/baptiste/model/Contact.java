@@ -1,5 +1,8 @@
 package nanterre.miage.baptiste.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Contact {
 	private int idContact;
 	private String nom;
@@ -7,6 +10,12 @@ public class Contact {
 	private String email;
 	private Adresse adresse;
 	private int version;
+	private Set<Group> groups;
+	
+	public Contact() {
+		this.groups = new HashSet<Group>();
+	}
+	
 	public String getNom() {
 		return nom;
 	}
@@ -53,6 +62,18 @@ public class Contact {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+	
+	public Set<Group> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(Set<Group> groups) {
+		this.groups = groups;
+	}
+	
+	public void addGroups(Group group) {
+		this.groups.add(group);
 	}
 	
 }

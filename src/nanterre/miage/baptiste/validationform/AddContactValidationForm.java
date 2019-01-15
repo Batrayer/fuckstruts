@@ -6,7 +6,6 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class AddContactValidationForm extends ActionForm {

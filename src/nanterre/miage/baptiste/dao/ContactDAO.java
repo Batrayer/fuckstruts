@@ -28,7 +28,7 @@ public class ContactDAO extends ParentDAO{
 	public List<Contact> getAllContact() {
 		try {
 			super.loadCurrentSession();
-			Transaction tx = super.session.beginTransaction();
+			super.session.beginTransaction();
 			StringBuffer requete = new StringBuffer();
 			requete.append("select c from Contact c");
 			

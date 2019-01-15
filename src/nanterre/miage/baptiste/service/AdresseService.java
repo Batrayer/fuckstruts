@@ -10,13 +10,16 @@ public class AdresseService {
 		this.adao = new AdresseDAO();
 	}
 	public Adresse getOrCreate(String adresse) {
-		Adresse adr = adao.getByAdresse(adresse);
-		if (adr == null) {
-			adr = new Adresse();
-			adr.setAdresse(adresse);
-			adr = adao.addAdresse(adr);
+		if(adresse != null && !"".equals(adresse)) {
+			Adresse adr = adao.getByAdresse(adresse);
+			if (adr == null) {
+				adr = new Adresse();
+				adr.setAdresse(adresse);
+				adr = adao.addAdresse(adr);
+			}
+			return adr;	
 		}
-		return adr;
+		return null;
 	}
 	public static AdresseService getInstance() {
 		return INSTANCE;

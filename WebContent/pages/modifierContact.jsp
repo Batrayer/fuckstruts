@@ -47,9 +47,16 @@
 			
 			<% if(Entreprise.class.isInstance(contact)) {%>
 				<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.siret" /></label>
-			<html:text property="siret" size="30" maxlength="30" name="contact"/> <br>
+				<html:text property="siret" size="30" maxlength="30" name="contact"/> <br>
 			<% } %>
-	
+			
+			<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.adresse" /></label>
+			<% if(contact.getAdresse() != null) {%>
+				<bean:define id="adr" name="contact" property="adresse"/>
+				<html:text property="adresse" size="30" maxlength="100" name="adr"/> <br>
+			<%}else{ %>
+				<html:text property="adresse" size="30" maxlength="100"/> <br>
+			<%}%>
 			<label class="col-sm-2 col-form-label"></label>
 			<html:submit styleClass="btn btn-lg btn-outline-primary"><bean:message key="global.form.submit" /></html:submit>
 		</html:form>

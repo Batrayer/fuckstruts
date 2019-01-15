@@ -23,13 +23,14 @@ public class AdresseDAO extends ParentDAO {
 			Adresse a = (Adresse) results.uniqueResult();
 			return a;
 		} finally {
+			super.session.close();
 			super.freeSession();
 		}
 	}
 	
 	public Adresse addAdresse(Adresse adresse) {
 		try {
-			super.newSession();
+			super.loadCurrentSession();
 			super.session.beginTransaction();
 			super.session.save(adresse);
 			super.session.getTransaction().commit();

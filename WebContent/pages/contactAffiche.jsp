@@ -41,11 +41,12 @@
 				<th><bean:message key="afficheContact.table.prenom" /></th>
 				<th><bean:message key="afficheContact.table.email" /></th>
 				<th><bean:message key="afficheContact.table.siret" /></th>
+				<th><bean:message key="afficheContact.table.adresse" /></th>
 				<th><bean:message key="afficheContact.table.modifier" /></th>
 				<th><bean:message key="afficheContact.table.supprime" /></th>
 				
 				<!-- 
-				<th><bean:message key="afficheContact.table.adresse" /></th>
+				
 				<th><bean:message key="afficheContact.table.ville" /></th>
 				<th><bean:message key="afficheContact.table.pays" /></th>
 				<th><bean:message key="afficheContact.table.codepostal" /></th>
@@ -62,6 +63,11 @@
 				<td><bean:write name="c" property="email" /></td>
 				<% if(Entreprise.class.isInstance(c)) {%>
 					<td><bean:write name="c" property="siret" /></td>
+				<% } else {%>
+					<td></td>
+				<% } %>
+				<% if(((Contact) c).getAdresse() != null) {%>
+					<td><bean:write name="c" property="adresse.adresse" /></td>
 				<% } else {%>
 					<td></td>
 				<% } %>

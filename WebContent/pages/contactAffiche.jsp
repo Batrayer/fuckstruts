@@ -74,7 +74,6 @@
 				<bean:define id="textVal" name="c" property="idContact"/>
 				<td><html:link page="/ModifierContact.do" paramId="id" paramName="textVal" ><bean:message key="afficheContact.table.modifier" /></html:link></td>
 			  	<td><html:checkbox property="id" value="<%=textVal.toString() %>" /></td>
-			  	
 			</tr>
 			</logic:iterate>
 
@@ -82,11 +81,11 @@
 		<html:submit styleClass="btn btn-lg btn-outline-danger"><bean:message key="afficheContact.table.supprime" /></html:submit>
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/ContactCreation.do"><bean:message key="main.addContact.link" /></html:link>
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/GestionGroupe.do"><bean:message key="main.gestionGroup.link" /></html:link>
-		
+		<html:link styleClass="btn btn-lg btn-outline-primary" page="/RechercheContact.do"><bean:message key="main.rechercheContact.link" /></html:link>
 		<!-- 
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/EntrepriseCreation.do"><bean:message key="main.addEntreprise.link" /></html:link>
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/GestionGroupe.do"><bean:message key="main.gestionGroup.link" /></html:link>
-		<html:link styleClass="btn btn-lg btn-outline-primary" page="/RechercheContact.do"><bean:message key="main.rechercheContact.link" /></html:link>
+		
 		
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/ContactAffichage.do"><bean:message key="main.contact.affichage" /></html:link>
 		 -->

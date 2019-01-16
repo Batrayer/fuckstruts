@@ -10,6 +10,7 @@ import nanterre.miage.baptiste.model.Contact;
 import nanterre.miage.baptiste.model.Entreprise;
 import nanterre.miage.baptiste.validationform.AddContactValidationForm;
 import nanterre.miage.baptiste.validationform.ModifierBDDContactValidationForm;
+import nanterre.miage.baptiste.validationform.RechercheContactValidationForm;
 
 public class ContactService {
 	private static final ContactService INSTANCE = new ContactService();
@@ -23,6 +24,19 @@ public class ContactService {
     
     public List<Contact> getAllContact() {
     	return cdao.getAllContact();
+    }
+    public Contact differentiateFromForm(RechercheContactValidationForm form) {
+    	Contact c;
+    	if(form.getSiret() != null && !"".equals(form.getSiret())) {
+    		c = new Entreprise();
+    		((Entreprise) c).setSiret(form.getSiret());
+    	} else {
+    		c = new Contact();
+    	}
+    	c.setEmail(form.getEmail());
+		c.setNom(form.getNom());
+		c.setPrenom(form.getPrenom());
+		return c;
     }
     public Contact differentiateFromForm(AddContactValidationForm form) {
     	Contact c;
@@ -46,6 +60,9 @@ public class ContactService {
 		c.setNom(form.getNom());
 		c.setPrenom(form.getPrenom());
 		return c;
+    }
+    public List<Contact> getAllContactLike(Contact contact) {
+    	return cdao.getAllContactLike(contact);
     }
     public Contact getContactById(int id) {
     	return cdao.getContact(id);

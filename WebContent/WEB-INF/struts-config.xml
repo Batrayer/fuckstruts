@@ -11,11 +11,11 @@
     	<form-bean name="AddContactValidationForm" type="nanterre.miage.baptiste.validationform.AddContactValidationForm" />
         <form-bean name="DeleteSelectedValidationForm" type="nanterre.miage.baptiste.validationform.DeleteSelectedValidationForm" />
         <form-bean name="ModifierBDDContactValidationForm" type="nanterre.miage.baptiste.validationform.ModifierBDDContactValidationForm" />
+        <form-bean name="RechercheContactValidationForm" type="nanterre.miage.baptiste.validationform.RechercheContactValidationForm" />
         
         <!-- 
         <form-bean name="AddEntrepriseValidationForm" type="org.lip6.struts.actionForm.AddEntrepriseValidationForm" />
         <form-bean name="AddContactGroupValidationForm" type="org.lip6.struts.actionForm.AddContactGroupValidationForm" />
-        <form-bean name="RechercheContactValidationForm" type="org.lip6.struts.actionForm.RechercheContactValidationForm" />
         <form-bean name="GetContactEntrepriseValidationForm" type="org.lip6.struts.actionForm.GetContactEntrepriseValidationForm" />
         <form-bean name="GetContactGroupValidationForm" type="org.lip6.struts.actionForm.GetContactGroupValidationForm" />
 	-->
@@ -37,10 +37,7 @@
         <action path="/AfficherContactEntreprise" type="org.lip6.struts.servletAction.GetContactEntrepriseAction" name="GetContactEntrepriseValidationForm" scope="request" input="/pages/entrepriseCreation.jsp">
             <forward path="/pages/contactAffiche.jsp" name="success"/>
         </action>
-        <action path="/RechercheContactAction" type="org.lip6.struts.servletAction.RechercheContactAction" name="RechercheContactValidationForm" scope="request" input="/pages/rechercheContact.jsp">
-            <forward path="/pages/contactAffiche.jsp" name="success"/>
-        </action>
-        <action path="/RechercheContact" forward="/pages/rechercheContact.jsp" />
+        
         <action path="/AddEntrepriseAction" type="org.lip6.struts.servletAction.AjoutEntrepriseAction" name="AddEntrepriseValidationForm" scope="request" input="/pages/entrepriseCreation.jsp">
             <forward name="success" path="/ContactAffichage.do" redirect="true" />
         </action>
@@ -51,6 +48,12 @@
             <forward name="success" path="/GestionGroupe.do" redirect="true" />
         </action>
         -->
+        <action path="/RechercheContact" forward="/pages/rechercheContact.jsp" />
+        
+        <action path="/RechercheContactAction" type="nanterre.miage.baptiste.servlet.RechercheContactAction" name="RechercheContactValidationForm" scope="request" input="/pages/rechercheContact.jsp">
+            <forward path="/pages/contactAffiche.jsp" name="success"/>
+        </action>
+        
         <action path="/GestionGroupe" type="nanterre.miage.baptiste.servlet.AfficheGroupAction">
             <forward name="reussi" path="/pages/gestionGroup.jsp" />
         </action>

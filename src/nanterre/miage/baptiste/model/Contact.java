@@ -14,6 +14,9 @@ public class Contact {
 	
 	public Contact() {
 		this.groups = new HashSet<Group>();
+		this.nom = null;
+		this.prenom = null;
+		this.email = null;
 	}
 	
 	public String getNom() {

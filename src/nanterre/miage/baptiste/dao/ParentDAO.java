@@ -28,4 +28,12 @@ public class ParentDAO {
 			System.out.println("Old session");
 		}
 	}
+	
+	protected String whereOrAndAppend(String request) {
+		if (request.contains("WHERE")) {
+			return "AND";
+		} else {
+			return "WHERE";
+		}
+	}
 }

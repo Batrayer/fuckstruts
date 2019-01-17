@@ -26,5 +26,6 @@
     	<mapping resource="nanterre/miage/baptiste/domain/User.hbm.xml" />
     	<mapping resource="nanterre/miage/baptiste/domain/Adresse.hbm.xml"/>
     	<mapping resource="nanterre/miage/baptiste/domain/Group.hbm.xml"/>
+    	<mapping resource="nanterre/miage/baptiste/domain/Telephone.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

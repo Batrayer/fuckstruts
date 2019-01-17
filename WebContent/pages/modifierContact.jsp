@@ -3,6 +3,7 @@
 <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean" %>
 <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ taglib prefix="nested" uri="http://struts.apache.org/tags-nested" %>
+<%@taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 <%@page import="nanterre.miage.baptiste.model.Entreprise"%>
 <%@page import="nanterre.miage.baptiste.model.Contact"%>
 <script
@@ -57,6 +58,16 @@
 			<%}else{ %>
 				<html:text property="adresse" size="30" maxlength="100"/> <br>
 			<%}%>
+			<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.group" /></label>
+			<html:select multiple="true" property="idGroup">
+				<html:option value="<%=null %>"><bean:message key="addContact.form.noGroup" /></html:option>
+				<html:optionsCollection name="cgrp" value="idGroup" label="groupName"/>
+			</html:select> <br>
+			<bean:define id="group" name="contact" property="groups"></bean:define>
+			<bean:message key="modifContact.contactdansgroupe" />
+			<logic:iterate id="groups" name="group">
+				<bean:write property="groupName" name="groups" />,
+			</logic:iterate>
 			<label class="col-sm-2 col-form-label"></label>
 			<html:submit styleClass="btn btn-lg btn-outline-primary"><bean:message key="global.form.submit" /></html:submit>
 		</html:form>

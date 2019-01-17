@@ -1,39 +1,72 @@
 package nanterre.miage.baptiste.dao;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import util.HibernateUtil;
 
 public class ParentDAO {
-	Session session = null;
-	
+	Transaction tx;
+	Session session;
 	public ParentDAO() {
 	}
 	
 	protected void freeSession() {
-		if (this.session != null) {
-			session = null;
+		try  {
+			this.session().close();
+		}catch(Exception e ) {
+			e.printStackTrace();
+		}finally {
+			this.tx = null;
+			System.out.println("FreeSession");
 		}
+		
 	}
-	protected void newSession() {
-		this.session = HibernateUtil.getSessionFactory().openSession();
+
+	protected Session session() {
+	     return HibernateUtil.getSessionFactory().openSession();
 	}
-	protected void loadCurrentSession() {
-		System.out.println("Load currentSession");
-		this.session = HibernateUtil.getSessionFactory().getCurrentSession();
-		if (this.session == null) {
-			this.newSession();
-			System.out.println("New session");
-		} else {
-			System.out.println("Old session");
+	
+	protected void beginTransaction() {
+		try {
+			this.session = session();
+			this.tx = this.session.beginTransaction();
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
-	protected String whereOrAndAppend(String request) {
+ 	protected String whereOrAndAppend(String request) {
 		if (request.contains("WHERE")) {
 			return "AND";
 		} else {
 			return "WHERE";
+		}
+	}
+	
+	protected Object insertObject(Object object) {
+		try {
+			beginTransaction();
+			this.session.save(object);
+			tx.commit();
+			return object;
+		} catch (Exception e) {
+			e.printStackTrace();
+			freeSession();
+			return null;
+		}
+	}
+	
+	protected Object updateObject(Object object) {
+		try {
+			beginTransaction();
+			this.session.update(object);
+			tx.commit();
+			return object;
+		} catch (Exception e) {
+			e.printStackTrace();
+			freeSession();
+			return object;
 		}
 	}
 }

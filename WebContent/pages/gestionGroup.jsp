@@ -37,15 +37,15 @@
 					<td><bean:write name="grp" property="idGroup" /></td>
 					<td><bean:write name="grp" property="groupName" /></td>
 					<bean:define id="textVal" name="grp" property="idGroup"/>
-					<!-- <td><html:link page="/AfficherContactGroup.do" paramId="groupId" paramName="textVal" ><bean:message key="entreprise.table.affichercontact" /></html:link><td> -->
-				
+					<td><html:link page="/AfficherContactGroup.do" paramId="groupId" paramName="textVal" ><bean:message key="entreprise.table.affichercontact" /></html:link><td>
 				</tr>
 			</logic:iterate>
 		</table>
-	<% /*
+	
 		<h1><bean:message key="gestionGroup.h1.add"/></h1>
 		<html:form action="/AddContactGroup.do" styleClass="form-group">
 		<html:errors/>
+	
 		<label class="col-sm-2 col-form-label"><bean:message key="gestionGroup.form.nom" /></label>
 		<html:text property="nom" size="30" maxlength="30"/> <br>
 	
@@ -53,8 +53,7 @@
 		<html:submit styleClass="btn btn-lg btn-outline-primary"><bean:message key="global.form.submit" /></html:submit>
 		</html:form>
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/ContactAffichage.do"><bean:message key="main.contact.affichage" /></html:link>
-		 */ 
-	%>
+
 	</div>
 </div>
 </body>

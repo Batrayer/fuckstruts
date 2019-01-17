@@ -1,5 +1,7 @@
 package nanterre.miage.baptiste.servlet;
 
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,8 +13,10 @@ import org.hibernate.StaleObjectStateException;
 
 import nanterre.miage.baptiste.model.Adresse;
 import nanterre.miage.baptiste.model.Contact;
+import nanterre.miage.baptiste.model.Group;
 import nanterre.miage.baptiste.service.AdresseService;
 import nanterre.miage.baptiste.service.ContactService;
+import nanterre.miage.baptiste.service.GroupService;
 import nanterre.miage.baptiste.validationform.ModifierBDDContactValidationForm;
 
 public class ModifierBDDContactAction extends Action {
@@ -21,8 +25,11 @@ public class ModifierBDDContactAction extends Action {
 		try {
 			ContactService cts = ContactService.getInstance();
 			AdresseService ass = AdresseService.getInstance();
+			GroupService gps = GroupService.getInstance();
 			Adresse adresse = ass.getOrCreate(((ModifierBDDContactValidationForm) form).getAdresse());
 			Contact contact = cts.differentiateFromForm((ModifierBDDContactValidationForm)form);
+			Set<Group> groups = gps.getAllFromTab(((ModifierBDDContactValidationForm)form).getIdGroup());
+			contact.setGroups(groups);
 			contact.setAdresse(adresse);
 			cts.updateContact(contact);
 			return mapping.findForward("success");

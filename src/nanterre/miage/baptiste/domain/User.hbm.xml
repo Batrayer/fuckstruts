@@ -4,10 +4,10 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd%22%3E">
 <hibernate-mapping package="nanterre.miage.baptiste.model">
   <class name="User" table="user">
-       <id name="idUser" type="int" column="idUser" >
-           <generator class="increment"/>
-       </id>
-
+	<id name="idUser" type="int" column="idUser" >
+	    <generator class="increment"/>
+	</id>
+	
      <property name="username">
          <column name="username" />
         </property>

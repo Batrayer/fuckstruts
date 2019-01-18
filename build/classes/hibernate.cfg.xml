@@ -9,7 +9,15 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"></property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+		<!-- CACHE 2ND LEVEL -->
+		<property name="cache.provider_class">
+			org.hibernate.cache.EhCacheProvider
+		</property>
+		<property name="cache.use_second_level_cache">
+			true
+		</property>
+		
          <!-- fait en sorte qu'Hibernate gere automatiquement la session -->
          <!-- Celle-ci est liée au thread local. -->
         <property name="current_session_context_class">thread</property>

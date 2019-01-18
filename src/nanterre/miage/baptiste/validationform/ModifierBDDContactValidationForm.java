@@ -16,29 +16,16 @@ public class ModifierBDDContactValidationForm extends ActionForm {
     private String adresse = null;
     private String siret = null;
     private int[] idGroup = null;
-    private String idPhoneNumber = null;
-    private String phoneNumber = null;
-    private String phoneKind = null;
+    private int[] idTel = null;
     private int version;
 
-    public String getIdPhoneNumber() {
-    	return this.idPhoneNumber;
+    public int[] getIdTel() {
+    	return this.idTel;
     }
-    public String getPhoneKind() {
-    	return this.phoneKind;
+    public void setIdTel(int[] idTel) {
+    	this.idTel= idTel;
     }
-    public String getPhoneNumber() {
-    	return this.phoneNumber;
-    }
-    public void setIdPhoneNumber(String idPhoneNumber) {
-    	this.idPhoneNumber = idPhoneNumber;
-    }
-    public void setPhoneKind(String phoneKind) {
-    	this.phoneKind = phoneKind;
-    }
-    public void setPhoneNumber(String phoneNumber) {
-    	this.phoneNumber = phoneNumber;
-    }
+
     
     public int[] getIdGroup() {
     	return this.idGroup;
@@ -120,18 +107,6 @@ public class ModifierBDDContactValidationForm extends ActionForm {
         if(getPrenom()==null || getPrenom().length()<1){
         	errors.add("prenom", new ActionMessage("addContact.form.add.error.prenom"));
         }
-        
-        if(!errors.isEmpty()) {/*
-        	Contact c = new Contact(Integer.parseInt(getId()),getNom(), getPrenom(), getEmail(), getAdresse(), getVille(), getPays(),getCodepostal());
-        	c.setSiret(this.siret);
-        	try {
-        		c.setIdPhoneNumber(Integer.parseInt(getIdPhoneNumber()));
-        	}catch (Exception e) {
-        		c.setIdPhoneNumber(-1);
-        	}
-        	request.setAttribute("contact", c);
-        */}
- 
         System.out.println("validated");
         return errors;
     }

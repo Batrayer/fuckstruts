@@ -62,11 +62,14 @@ public class ParentDAO {
 			beginTransaction();
 			this.session.update(object);
 			tx.commit();
+			this.session.close();
 			return object;
 		} catch (Exception e) {
 			e.printStackTrace();
 			freeSession();
 			return object;
+		} finally {
+			freeSession();
 		}
 	}
 }

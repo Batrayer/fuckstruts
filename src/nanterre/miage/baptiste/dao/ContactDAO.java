@@ -14,7 +14,9 @@ public class ContactDAO extends ParentDAO{
 	public Contact getContact(int id) {
 		try {
 			super.beginTransaction();
-			Contact c = (Contact) super.session().get(Contact.class, id);
+			StringBuffer requete = new StringBuffer();
+			requete.append("SELECT c FROM Contact c LEFT JOIN c.adresse WHERE c.idContact=" + id);
+			Contact c = (Contact) super.session().createQuery(requete.toString()).uniqueResult();
 			return c;
 		} finally {
 			super.freeSession();
@@ -39,14 +41,6 @@ public class ContactDAO extends ParentDAO{
 				requete.append(" c.email LIKE '%" + contact.getEmail() +"%' ");
 			}
 			Query results = super.session().createQuery(requete.toString());
-			/*
-			Example example = Example.create(contact)
-					.ignoreCase()
-					.enableLike()
-					.excludeNone()
-					.excludeZeroes();
-			List<Contact> lst =  super.session.createCriteria(Contact.class).add(example).list();
-			System.out.println(lst.size());*/
 			lst = results.list();
 			return lst;
 		} catch (Exception e) {

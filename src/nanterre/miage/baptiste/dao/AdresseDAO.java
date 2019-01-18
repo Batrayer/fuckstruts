@@ -28,6 +28,8 @@ public class AdresseDAO extends ParentDAO {
 			return (Adresse) super.insertObject(adresse);
 		} catch (Exception e) {
 			return null;
+		} finally {
+			super.freeSession();
 		}
 	}
 

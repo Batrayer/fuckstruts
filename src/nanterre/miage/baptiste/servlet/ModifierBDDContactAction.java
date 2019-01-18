@@ -17,6 +17,7 @@ import nanterre.miage.baptiste.model.Group;
 import nanterre.miage.baptiste.service.AdresseService;
 import nanterre.miage.baptiste.service.ContactService;
 import nanterre.miage.baptiste.service.GroupService;
+import nanterre.miage.baptiste.service.TelephoneService;
 import nanterre.miage.baptiste.validationform.ModifierBDDContactValidationForm;
 
 public class ModifierBDDContactAction extends Action {
@@ -26,8 +27,12 @@ public class ModifierBDDContactAction extends Action {
 			ContactService cts = ContactService.getInstance();
 			AdresseService ass = AdresseService.getInstance();
 			GroupService gps = GroupService.getInstance();
+			TelephoneService tls = TelephoneService.getInstance();
+			
 			Adresse adresse = ass.getOrCreate(((ModifierBDDContactValidationForm) form).getAdresse());
 			Contact contact = cts.differentiateFromForm((ModifierBDDContactValidationForm)form);
+			System.out.println(((ModifierBDDContactValidationForm) form).getIdTel());
+			tls.setContactToListTelId(((ModifierBDDContactValidationForm) form).getIdTel(), contact);
 			Set<Group> groups = gps.getAllFromTab(((ModifierBDDContactValidationForm)form).getIdGroup());
 			contact.setGroups(groups);
 			contact.setAdresse(adresse);

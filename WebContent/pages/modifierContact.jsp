@@ -68,6 +68,16 @@
 			<logic:iterate id="groups" name="group">
 				<bean:write property="groupName" name="groups" />,
 			</logic:iterate>
+			<br/>
+			<label class="col-sm-2 col-form-label"><bean:message key="addContact.form.phoneNumber" /></label>
+			<html:select multiple="true" property="idTel">
+				<html:option value="<%=null %>"><bean:message key="addContact.form.noTel" /></html:option>
+				<html:optionsCollection name="tel" value="idTelephone" label="telephone"/>
+			</html:select> <br>
+			<bean:message key="modifContact.contactdansgroupe" />
+			<logic:iterate id="tel" name="tctc">
+				<bean:write property="telephone" name="tel" />,
+			</logic:iterate>
 			<label class="col-sm-2 col-form-label"></label>
 			<html:submit styleClass="btn btn-lg btn-outline-primary"><bean:message key="global.form.submit" /></html:submit>
 		</html:form>

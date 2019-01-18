@@ -4,11 +4,8 @@ import nanterre.miage.baptiste.dao.AdresseDAO;
 import nanterre.miage.baptiste.model.Adresse;
 
 public class AdresseService {
-	private static final AdresseService INSTANCE = new AdresseService();
-	private final AdresseDAO adao;
-	private AdresseService() {
-		this.adao = new AdresseDAO();
-	}
+	private AdresseDAO adao;
+
 	public Adresse getOrCreate(String adresse) {
 		if(adresse != null && !"".equals(adresse)) {
 			Adresse adr = adao.getByAdresse(adresse);
@@ -21,7 +18,7 @@ public class AdresseService {
 		}
 		return null;
 	}
-	public static AdresseService getInstance() {
-		return INSTANCE;
+	public void setAdao(AdresseDAO adao) {
+		this.adao = adao;
 	}
 }

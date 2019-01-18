@@ -13,13 +13,9 @@ import nanterre.miage.baptiste.validationform.ModifierBDDContactValidationForm;
 import nanterre.miage.baptiste.validationform.RechercheContactValidationForm;
 
 public class ContactService {
-	private static final ContactService INSTANCE = new ContactService();
-	private final ContactDAO cdao;
-    public static ContactService getInstance() {
-        return INSTANCE;
-    }
-    private ContactService() {
-    	cdao = new ContactDAO();
+	private ContactDAO cdao;
+    private ContactService(ContactDAO cdao) {
+    	this.cdao = cdao;
     }
     
     public List<Contact> getAllContact() {

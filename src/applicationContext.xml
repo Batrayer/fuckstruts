@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<aop:config>
+		<aop:aspect id="beanBefore" ref="beforegetallbean">
+			<aop:before
+				pointcut="execution( * nanterre.miage.baptiste.dao.ContactDAO.getAllContact())"
+				method="beforeGetAll"
+			/>
+		</aop:aspect>
+	</aop:config>
+	<bean id="beforegetallbean" class="nanterre.miage.baptiste.beanspecial.Before"/>
+	
+	<bean id="parentDao" abstract="true">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<bean id="AdresseDAO" class="nanterre.miage.baptiste.dao.AdresseDAO" />
+	<bean id="ContactDAO" class="nanterre.miage.baptiste.dao.ContactDAO" />
+	<bean id="GroupDAO" class="nanterre.miage.baptiste.dao.GroupDAO" />
+	<bean id="TelephoneDAO" class="nanterre.miage.baptiste.dao.TelephoneDAO" />
+	<bean id="UserDAO" class="nanterre.miage.baptiste.dao.UserDAO" />
+	
+	<bean id="ContactService" class="nanterre.miage.baptiste.service.ContactService">
+		<constructor-arg name="cdao"><ref bean="ContactDAO"/></constructor-arg>
+	</bean>
+	<bean id="AdresseService" class="nanterre.miage.baptiste.service.AdresseService">
+		<property name="adao"><ref bean="AdresseDAO"/></property>
+	</bean>
+	<bean id="GroupService" class="nanterre.miage.baptiste.service.GroupService">
+		<constructor-arg name="gdao"><ref bean="GroupDAO"/></constructor-arg>
+	</bean>
+	<bean id="TelephoneService" class="nanterre.miage.baptiste.service.TelephoneService">
+		<constructor-arg name="tdao"><ref bean="TelephoneDAO"/></constructor-arg>
+	</bean>
+	<bean id="ConnexionService" class="nanterre.miage.baptiste.service.ConnexionService">
+		<constructor-arg name="udao"><ref bean="UserDAO"/></constructor-arg>
+	</bean>
+	
+</beans>

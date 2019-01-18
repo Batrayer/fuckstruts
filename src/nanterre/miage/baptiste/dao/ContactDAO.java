@@ -52,6 +52,7 @@ public class ContactDAO extends ParentDAO{
 	}
 	
 	public List<Contact> getAllContact() {
+		System.out.println("Je suis dans getAllContact");
 		try {
 			super.beginTransaction();
 			StringBuffer requete = new StringBuffer();

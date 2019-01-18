@@ -8,8 +8,11 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import nanterre.miage.baptiste.service.ConnexionService;
+import nanterre.miage.baptiste.service.GroupService;
 import nanterre.miage.baptiste.validationform.ConnexionValidationForm;
 
 public class ConnexionAction extends Action{
@@ -19,7 +22,8 @@ public class ConnexionAction extends Action{
 			System.out.println("ConnexionAction");
 			String error = null;
 			HttpSession session = pRequest.getSession();
-			boolean bool = ConnexionService.getInstance().checkIdentifiant((ConnexionValidationForm) pForm);
+			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+			boolean bool = ((ConnexionService)context.getBean("ConnexionService")).checkIdentifiant((ConnexionValidationForm) pForm);
 			if(!bool)
 			{
 				error = "Erreur l'utilisateur n'existe pas";
@@ -31,6 +35,7 @@ public class ConnexionAction extends Action{
 				return mapping.findForward("error");
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			return new ActionForward("/ERROR");
 		}
 	}

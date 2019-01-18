@@ -5,21 +5,21 @@ import nanterre.miage.baptiste.model.User;
 import nanterre.miage.baptiste.validationform.ConnexionValidationForm;
 
 public class ConnexionService {
-	private static final ConnexionService INSTANCE = new ConnexionService();
-	private final UserDAO cdao = new UserDAO();
+	private UserDAO udao;
 	
-	private ConnexionService() {
+	private ConnexionService(UserDAO udao) {
+		this.udao = udao;
 	}
 	
 	public boolean checkIdentifiant(ConnexionValidationForm form) {
 		User u = new User();
 		u.setUsername(form.getUsername());
 		u.setPassword(form.getPassword());
-		return this.cdao.getConnection(u);
+		return this.udao.getConnection(u);
 	}
 	
-    public static ConnexionService getInstance() {
-        return INSTANCE;
-    }
+	public void setUdao(UserDAO udao) {
+		this.udao = udao;
+	}
 	
 }

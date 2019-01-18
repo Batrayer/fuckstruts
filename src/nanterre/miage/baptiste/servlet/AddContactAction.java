@@ -7,6 +7,10 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+
 import nanterre.miage.baptiste.validationform.AddContactValidationForm;
 import nanterre.miage.baptiste.model.Adresse;
 import nanterre.miage.baptiste.model.Contact;
@@ -17,8 +21,10 @@ public class AddContactAction extends Action {
 
 	public ActionForward execute(final ActionMapping mapping, ActionForm pForm, final HttpServletRequest pRequest,final HttpServletResponse pResponse){
 		try {
-			ContactService cts = ContactService.getInstance();
-			AdresseService ass = AdresseService.getInstance();
+			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+			ContactService cts = (ContactService)context.getBean("ContactService");
+			AdresseService ass = (AdresseService)context.getBean("AdresseService");
+
 			Adresse a = ass.getOrCreate(((AddContactValidationForm) pForm).getAdresse()); 
 			Contact c = cts.differentiateFromForm(((AddContactValidationForm) pForm));
 			c.setAdresse(a);

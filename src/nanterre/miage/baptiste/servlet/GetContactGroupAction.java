@@ -6,6 +6,8 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import nanterre.miage.baptiste.model.Contact;
 import nanterre.miage.baptiste.model.Group;
@@ -13,11 +15,12 @@ import nanterre.miage.baptiste.service.GroupService;
 import nanterre.miage.baptiste.validationform.GetContactGroupValidationForm;
 
 import java.util.Set;
-
 public class GetContactGroupAction extends Action{
 	public ActionForward execute(final ActionMapping mapping, ActionForm pForm, final HttpServletRequest pRequest,final HttpServletResponse pResponse) throws Exception{
 		try {
-			GroupService gps = GroupService.getInstance();
+			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+			GroupService gps = (GroupService)context.getBean("GroupService");
+			
 			Group grp = gps.getGroupFromId(Integer.parseInt(((GetContactGroupValidationForm)pForm).getGroupId()));
 			Set<Contact> ctc = grp.getContacts();
 			pRequest.setAttribute("contact",ctc);

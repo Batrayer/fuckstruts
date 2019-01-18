@@ -10,6 +10,8 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.hibernate.StaleObjectStateException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import nanterre.miage.baptiste.model.Adresse;
 import nanterre.miage.baptiste.model.Contact;
@@ -24,10 +26,11 @@ public class ModifierBDDContactAction extends Action {
 	
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)throws Exception{
 		try {
-			ContactService cts = ContactService.getInstance();
-			AdresseService ass = AdresseService.getInstance();
-			GroupService gps = GroupService.getInstance();
-			TelephoneService tls = TelephoneService.getInstance();
+			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+			GroupService gps = (GroupService)context.getBean("GroupService");
+			ContactService cts = (ContactService)context.getBean("ContactService");
+			AdresseService ass =  (AdresseService)context.getBean("AdresseService");
+			TelephoneService tls =  (TelephoneService)context.getBean("TelephoneService");
 			
 			Adresse adresse = ass.getOrCreate(((ModifierBDDContactValidationForm) form).getAdresse());
 			Contact contact = cts.differentiateFromForm((ModifierBDDContactValidationForm)form);

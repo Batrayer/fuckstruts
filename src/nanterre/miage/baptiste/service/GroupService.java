@@ -9,14 +9,9 @@ import nanterre.miage.baptiste.model.Group;
 import nanterre.miage.baptiste.validationform.AddContactGroupValidationForm;
 
 public class GroupService {
-	private static final GroupService INSTANCE = new GroupService();
-	private final GroupDAO gdao;
-	private GroupService() {
-		gdao = new GroupDAO();
-	}
-	
-	public static GroupService getInstance() {
-		return INSTANCE;
+	private GroupDAO gdao;
+	private GroupService(GroupDAO gdao) {
+		this.gdao = gdao;
 	}
 	
 	public List<Group> getAllGroup() {

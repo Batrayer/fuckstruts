@@ -8,10 +8,10 @@ import nanterre.miage.baptiste.model.Contact;
 import nanterre.miage.baptiste.model.Telephone;
 
 public class TelephoneService {
-	private static final TelephoneService INSTANCE = new TelephoneService();
 	private final TelephoneDAO tdao;
-	private TelephoneService() {
-		tdao = new TelephoneDAO();
+
+	private TelephoneService(TelephoneDAO tdao) {
+		this.tdao = tdao;
 	}
 	
 	public List<Telephone> getAllTel() {
@@ -48,9 +48,5 @@ public class TelephoneService {
 		}
 
 		return telContact;
-	}
-	
-	public static TelephoneService getInstance() {
-		return INSTANCE;
-	}
+	}	
 }

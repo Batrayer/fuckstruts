@@ -6,7 +6,7 @@ public class Adresse {
 	private int version;
 	
 	public String getAdresse() {
-		return adresse;
+		return this.adresse;
 	}
 	public int getIdAdresse() {
 		return idAdresse;

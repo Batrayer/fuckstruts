@@ -74,7 +74,7 @@
 				<html:option value="<%=null %>"><bean:message key="addContact.form.noTel" /></html:option>
 				<html:optionsCollection name="tel" value="idTelephone" label="telephone"/>
 			</html:select> <br>
-			<bean:message key="modifContact.contactdansgroupe" />
+			<bean:message key="modifContact.contactavectel" />
 			<logic:iterate id="tel" name="tctc">
 				<bean:write property="telephone" name="tel" />,
 			</logic:iterate>

@@ -14,4 +14,5 @@ public class Entreprise extends Contact{
 		super();
 		this.siret = null;
 	}
+	
 }

@@ -18,6 +18,21 @@ public class AdresseService {
 		}
 		return null;
 	}
+	
+	public Adresse create(Adresse adresse) {
+		if(adresse.getAdresse() != null && !"".equals(adresse.getAdresse())) {
+			Adresse adr = adao.getByAdresse(adresse.getAdresse());
+			if (adr == null) {
+				adr = adao.addAdresse(adresse);
+				adr = adao.addAdresse(adr);
+			} else {
+				adao.deleteAdresse(adr);
+				adr = adao.addAdresse(adresse);
+			}
+			return adr;	
+		}
+		return null;
+	}
 	public void setAdao(AdresseDAO adao) {
 		this.adao = adao;
 	}

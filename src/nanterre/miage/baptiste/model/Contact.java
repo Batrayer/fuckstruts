@@ -20,7 +20,7 @@ public class Contact {
 	}
 	
 	public String getNom() {
-		return nom;
+		return this.nom;
 	}
 
 	public void setNom(String nom) {
@@ -52,7 +52,7 @@ public class Contact {
 	}
 	
 	public Adresse getAdresse() {
-		return adresse;
+		return this.adresse;
 	}
 
 	public void setAdresse(Adresse adresse) {
@@ -78,5 +78,5 @@ public class Contact {
 	public void addGroups(Group group) {
 		this.groups.add(group);
 	}
-	
+
 }

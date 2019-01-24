@@ -10,22 +10,24 @@ import org.apache.struts.action.ActionMapping;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import nanterre.miage.baptiste.model.Contact;
-import nanterre.miage.baptiste.service.AdresseService;
-import nanterre.miage.baptiste.service.ContactService;
-import java.util.*;
+import nanterre.miage.baptiste.model.Telephone;
+import nanterre.miage.baptiste.service.TelephoneService;
 
-public class AfficheContactAction extends Action {
+import java.util.List;
+
+public class AfficheTelAction extends Action {	
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)throws Exception{
 		try {
 			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-			ContactService cts = (ContactService)context.getBean("ContactService");
-			List<Contact> ctc = cts.getAllContact();
-			request.setAttribute("contact", ctc);
+			TelephoneService tls  = (TelephoneService)context.getBean("TelephoneService");
+
+			List<Telephone> tel = tls.getAllTel();
+			request.setAttribute("tels", tel);
 			return mapping.findForward("reussi");
-		}catch(Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
-			return new ActionForward("ERROR");
+			return new ActionForward("/error");
+	
 		}
 	}
 }

@@ -14,12 +14,9 @@
         <form-bean name="RechercheContactValidationForm" type="nanterre.miage.baptiste.validationform.RechercheContactValidationForm" />
         <form-bean name="AddContactGroupValidationForm" type="nanterre.miage.baptiste.validationform.AddContactGroupValidationForm" />      
         <form-bean name="GetContactGroupValidationForm" type="nanterre.miage.baptiste.validationform.GetContactGroupValidationForm" />
+        <form-bean name="AddTelephoneValidationForm" type="nanterre.miage.baptiste.validationform.AddTelephoneValidationForm" ></form-bean>
 
     </form-beans>
-    <global-exceptions>
-    </global-exceptions>
-    <global-forwards>
-    </global-forwards>
 
     <action-mappings>
         <action path="/AfficherContactGroup" type="nanterre.miage.baptiste.servlet.GetContactGroupAction" name="GetContactGroupValidationForm" scope="request" input="/pages/gestionGroup.jsp">
@@ -28,7 +25,9 @@
         <action path="/AddContactGroup" type="nanterre.miage.baptiste.servlet.AddContactGroupAction" name="AddContactGroupValidationForm" scope="request" input="gestionGroup.jsp">
             <forward name="success" path="/GestionGroupe.do" redirect="true" />
         </action>
-       
+        <action path="/AddTelephone" type="nanterre.miage.baptiste.servlet.AddTelephoneAction" name="AddTelephoneValidationForm" scope="request" input="gestionTel.jsp">
+            <forward name="success" path="/GestionTel.do" redirect="true" />
+        </action>
         <action path="/RechercheContact" forward="/pages/rechercheContact.jsp" />
         
         <action path="/RechercheContactAction" type="nanterre.miage.baptiste.servlet.RechercheContactAction" name="RechercheContactValidationForm" scope="request" input="/pages/rechercheContact.jsp">
@@ -39,6 +38,10 @@
             <forward name="reussi" path="/pages/gestionGroup.jsp" />
         </action>
 
+        <action path="/GestionTel" type="nanterre.miage.baptiste.servlet.AfficheTelAction">
+            <forward name="reussi" path="/pages/gestionTel.jsp" />
+        </action>
+        
         
         <action path="/ModifierBDDContact" type="nanterre.miage.baptiste.servlet.ModifierBDDContactAction" name="ModifierBDDContactValidationForm" scope="request" input="/pages/modifierContact.jsp">
             <forward name="success" path="/ContactAffichage.do" redirect="true" />
@@ -49,7 +52,9 @@
             <forward name="success" path="/pages/modifierContact.jsp" />
         </action>
 
-
+        <action path="/RempliBDDAction" type="nanterre.miage.baptiste.servlet.RempliBDDAction" scope="request" input="/pages/contactAffiche.jsp">
+            <forward name="success" path="/ContactAffichage.do" redirect="true" />
+        </action>
 
         <action path="/DeleteSelected" type="nanterre.miage.baptiste.servlet.DeleteSelectedAction" name="DeleteSelectedValidationForm" scope="request" input="/pages/contactAffiche.jsp">
             <forward name="success" path="/ContactAffichage.do" redirect="true" />

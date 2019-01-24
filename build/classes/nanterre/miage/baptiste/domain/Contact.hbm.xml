@@ -23,11 +23,11 @@
 		<column name="email"/>
 	</property>
 	
-	<many-to-one name="adresse" column="adresse" class="Adresse" cascade="all" />
+	<many-to-one name="adresse" column="adresse" class="Adresse" cascade="persist" lazy="false" />
 	
-	<set name="groups" table="contact_group">
+	<set name="groups" table="contact_group" lazy="false" cascade="persist">
 		<key column="idContact"></key>
-		<many-to-many class="Group" column="idGroup"></many-to-many>
+		<many-to-many class="Group" column="idGroup" />
 	</set>
 	<subclass name="Entreprise" discriminator-value="entreprise">
 		<property name="siret" type="string" column="siret"/>

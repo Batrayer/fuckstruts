@@ -3,20 +3,20 @@ package nanterre.miage.baptiste.dao;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import nanterre.miage.baptiste.model.Contact;
 
 public class ContactDAO extends ParentDAO{
 
-	public ContactDAO(){
-		super();
+	public ContactDAO(SessionFactory sessionFactory) {
+		super(sessionFactory);
 	}
 	public Contact getContact(int id) {
 		try {
-			super.beginTransaction();
 			StringBuffer requete = new StringBuffer();
-			requete.append("SELECT c FROM Contact c LEFT JOIN c.adresse WHERE c.idContact=" + id);
-			Contact c = (Contact) super.session().createQuery(requete.toString()).uniqueResult();
+			requete.append("SELECT c FROM Contact c LEFT JOIN c.adresse a WHERE c.idContact=" + id);
+			Contact c = (Contact) super.getSessionFactory().getCurrentSession().createQuery(requete.toString()).uniqueResult();
 			return c;
 		} finally {
 			super.freeSession();
@@ -24,7 +24,6 @@ public class ContactDAO extends ParentDAO{
 	}
 	public List<Contact> getAllContactLike(Contact contact) {
 		try {
-			super.beginTransaction();
 			List<Contact> lst;
 			StringBuffer requete = new StringBuffer();
 			requete.append("select c from Contact c ");
@@ -40,7 +39,7 @@ public class ContactDAO extends ParentDAO{
 				requete.append(super.whereOrAndAppend(requete.toString()));
 				requete.append(" c.email LIKE '%" + contact.getEmail() +"%' ");
 			}
-			Query results = super.session().createQuery(requete.toString());
+			Query results = super.getSessionFactory().getCurrentSession().createQuery(requete.toString());
 			lst = results.list();
 			return lst;
 		} catch (Exception e) {
@@ -54,11 +53,10 @@ public class ContactDAO extends ParentDAO{
 	public List<Contact> getAllContact() {
 		System.out.println("Je suis dans getAllContact");
 		try {
-			super.beginTransaction();
 			StringBuffer requete = new StringBuffer();
-			requete.append("select c from Contact c");
+			requete.append("select c from Contact c LEFT JOIN c.adresse");
 			
-			Query results = super.session().createQuery(requete.toString());
+			Query results = super.getSessionFactory().getCurrentSession().createQuery(requete.toString());
 			List<Contact> lst =  results.list();
 			return lst;
 		} catch (Exception e) {
@@ -72,14 +70,12 @@ public class ContactDAO extends ParentDAO{
 
 	public void deleteAllInList(List<Contact> contacts) {
 		try {
-			super.beginTransaction();
 			for (Contact c: contacts) {
 				System.out.println(c.getIdContact());
-				c = (Contact) super.session().createCriteria(Contact.class)
+				c = (Contact) super.getSessionFactory().getCurrentSession().createCriteria(Contact.class)
 					.add(Restrictions.idEq(c.getIdContact())).uniqueResult();
-				super.session().delete(c);
+				super.getSessionFactory().getCurrentSession().delete(c);
 			}
-			super.session().getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

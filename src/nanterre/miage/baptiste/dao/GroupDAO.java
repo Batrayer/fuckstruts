@@ -3,12 +3,13 @@ package nanterre.miage.baptiste.dao;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SessionFactory;
 
 import nanterre.miage.baptiste.model.Group;
 
 public class GroupDAO extends ParentDAO {
-	public GroupDAO() {
-		super();
+	public GroupDAO(SessionFactory sessionFactory) {
+		super(sessionFactory);
 	}
 	public void addGroup(Group group) {
 		super.insertObject(group);
@@ -18,18 +19,16 @@ public class GroupDAO extends ParentDAO {
 	}
 	public Group getGroup(int id) {
 		try {
-			super.beginTransaction();
-			return (Group) super.session().get(Group.class, id);
+			return (Group) super.getSessionFactory().getCurrentSession().get(Group.class, id);
 		} finally {
 			super.freeSession();
 		}
 	}
 	public List<Group> getAllGroup() {
 		try {
-			super.beginTransaction();
 			StringBuffer requete = new StringBuffer();
 			requete.append("SELECT g FROM Group g");
-			List<Group> lst = super.session().createQuery(requete.toString()).list();
+			List<Group> lst = super.getSessionFactory().getCurrentSession().createQuery(requete.toString()).list();
 			return lst;
 		} finally {
 			super.freeSession();

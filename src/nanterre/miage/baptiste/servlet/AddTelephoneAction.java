@@ -10,20 +10,19 @@ import org.apache.struts.action.ActionMapping;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import nanterre.miage.baptiste.model.Group;
-import nanterre.miage.baptiste.service.AdresseService;
-import nanterre.miage.baptiste.service.ContactService;
-import nanterre.miage.baptiste.service.GroupService;
-import nanterre.miage.baptiste.validationform.AddContactGroupValidationForm;
+import nanterre.miage.baptiste.model.Telephone;
+import nanterre.miage.baptiste.service.TelephoneService;
+import nanterre.miage.baptiste.validationform.AddTelephoneValidationForm;
 
-public class AddContactGroupAction extends Action {
+public class AddTelephoneAction extends Action {
 
 	public ActionForward execute(final ActionMapping mapping, ActionForm pForm, final HttpServletRequest pRequest,final HttpServletResponse pResponse){
 		try {
 			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-			GroupService gps = (GroupService)context.getBean("GroupService");
-			Group group = gps.getGroupFromForm((AddContactGroupValidationForm) pForm);
-			gps.addGroup(group);
+			TelephoneService tls = (TelephoneService)context.getBean("TelephoneService");
+			Telephone tel = tls.getTelFromForm((AddTelephoneValidationForm) pForm);
+			
+			tls.insertTelephoneIfNotExist(tel);
 			return mapping.findForward("success");
 
 		}catch(Exception e) {

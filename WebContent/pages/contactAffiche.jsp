@@ -2,6 +2,7 @@
 <%@ taglib prefix="bean" uri="http://struts.apache.org/tags-bean" %>
 <%@ taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 <%@ taglib prefix="nested" uri="http://struts.apache.org/tags-nested" %>
+
 <%@taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 
 <%@ page import="nanterre.miage.baptiste.model.Contact"%>
@@ -67,10 +68,12 @@
 					<td></td>
 				<% } %>
 				<% if(((Contact) c).getAdresse() != null) {%>
-					<td><bean:write name="c" property="adresse.adresse" /></td>
+					<bean:define name="c" property="adresse" id="adr" />
+					<td><bean:write name="adr" property="adresse"/></td>
 				<% } else {%>
 					<td></td>
 				<% } %>
+
 				<bean:define id="textVal" name="c" property="idContact"/>
 				<td><html:link page="/ModifierContact.do" paramId="id" paramName="textVal" ><bean:message key="afficheContact.table.modifier" /></html:link></td>
 			  	<td><html:checkbox property="id" value="<%=textVal.toString() %>" /></td>
@@ -81,7 +84,9 @@
 		<html:submit styleClass="btn btn-lg btn-outline-danger"><bean:message key="afficheContact.table.supprime" /></html:submit>
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/ContactCreation.do"><bean:message key="main.addContact.link" /></html:link>
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/GestionGroupe.do"><bean:message key="main.gestionGroup.link" /></html:link>
+		<html:link styleClass="btn btn-lg btn-outline-primary" page="/GestionTel.do"><bean:message key="main.gestionTel.link" /></html:link>
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/RechercheContact.do"><bean:message key="main.rechercheContact.link" /></html:link>
+		<html:link styleClass="btn btn-lg btn-outline-primary" page="/RempliBDDAction.do"><bean:message key="main.contact.insertion" /></html:link>
 		<!-- 
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/EntrepriseCreation.do"><bean:message key="main.addEntreprise.link" /></html:link>
 		<html:link styleClass="btn btn-lg btn-outline-primary" page="/GestionGroupe.do"><bean:message key="main.gestionGroup.link" /></html:link>

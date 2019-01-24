@@ -1,44 +1,27 @@
 package nanterre.miage.baptiste.dao;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
 import org.hibernate.stat.Statistics;
 
 import util.HibernateUtil;
 
 public class ParentDAO {
-	Transaction tx;
-	Session session;
 	Statistics stat;
-	public ParentDAO() {
+	protected SessionFactory sessionFactory;
+	
+	protected ParentDAO(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+		this.stat = HibernateUtil.getSessionFactory().getStatistics();
+		this.stat.setStatisticsEnabled(true);
 	}
 	
 	protected void freeSession() {
-		try  {
-			this.stat = null;
-			this.session().close();
-		}catch(Exception e ) {
-			e.printStackTrace();
-		}finally {
-			this.tx = null;
-			System.out.println("FreeSession");
-		}
-		
+
 	}
 
-	protected Session session() {
-	     return HibernateUtil.getSessionFactory().openSession();
-	}
-	
-	protected void beginTransaction() {
-		try {
-			this.session = session();
-			this.tx = this.session.beginTransaction();
-			this.stat = HibernateUtil.getSessionFactory().getStatistics();
-			stat.setStatisticsEnabled(true);
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
+	protected SessionFactory getSessionFactory() {
+		
+		return this.sessionFactory;
 	}
 	
  	protected String whereOrAndAppend(String request) {
@@ -51,14 +34,12 @@ public class ParentDAO {
 	
 	protected Object insertObject(Object object) {
 		try {
-			beginTransaction();
-        	System.out.println("Second Level Hit Count=" + stat.getSecondLevelCacheHitCount());
-			System.out.println("Second Level Miss Count=" + stat.getSecondLevelCacheMissCount());
 			
-			this.session.save(object);
-			tx.commit();
-            System.out.println("Second Level Hit Count=" + stat.getSecondLevelCacheHitCount());
-			System.out.println("Second Level Miss Count=" + stat.getSecondLevelCacheMissCount());
+        	System.out.println("Second Level Hit Count=" + this.stat.getSecondLevelCacheHitCount());
+			System.out.println("Second Level Miss Count=" + this.stat.getSecondLevelCacheMissCount());
+			getSessionFactory().getCurrentSession().save(object);
+            System.out.println("Second Level Hit Count=" + this.stat.getSecondLevelCacheHitCount());
+			System.out.println("Second Level Miss Count=" + this.stat.getSecondLevelCacheMissCount());
 			return object;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,13 +50,11 @@ public class ParentDAO {
 	
 	protected Object updateObject(Object object) {
 		try {
-			beginTransaction();
-			this.session.update(object);
-			tx.commit();
+			this.getSessionFactory().getCurrentSession().update(object);
 			return object;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return object;
+			return null;
 		} finally {
 			freeSession();
 		}

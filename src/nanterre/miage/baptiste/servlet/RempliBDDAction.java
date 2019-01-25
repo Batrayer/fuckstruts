@@ -31,13 +31,13 @@ public class RempliBDDAction extends Action{
 	        
 	        Group volleyball = (Group) context.getBean("volleyball");
 	        Group collegue = (Group) context.getBean("collegue");
-	        groupService.addGroup(volleyball);
-	        groupService.addGroup(collegue);
+	        volleyball = (Group) groupService.addGroupIfNameNotExist(volleyball);
+	        collegue = (Group) groupService.addGroupIfNameNotExist(collegue);
 	        
 	        Adresse adr1 = (Adresse) context.getBean("adresse1");
 	        Adresse adr2 = (Adresse) context.getBean("adresse2");
-	        adresseService.create(adr1);
-	        adresseService.create(adr2);
+	        adr1 = adresseService.create(adr1);
+	        adr2 = adresseService.create(adr2);
 	        
 	        
 	        Contact alexandre = (Contact) context.getBean("contact1");

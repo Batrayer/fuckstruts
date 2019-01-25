@@ -49,12 +49,13 @@
 	</bean>
 	
 	<!-- Service -->
-	<bean id="ContactService" class="nanterre.miage.baptiste.service.ContactService">
-		<constructor-arg name="cdao"><ref bean="ContactDAO"/></constructor-arg>
-	</bean>
 	<bean id="AdresseService" class="nanterre.miage.baptiste.service.AdresseService">
 		<property name="adao"><ref bean="AdresseDAO"/></property>
 	</bean>
+	<bean id="ContactService" class="nanterre.miage.baptiste.service.ContactService">
+		<constructor-arg name="cdao"><ref bean="ContactDAO"/></constructor-arg>
+	</bean>
+
 	<bean id="GroupService" class="nanterre.miage.baptiste.service.GroupService">
 		<constructor-arg name="gdao"><ref bean="GroupDAO"/></constructor-arg>
 	</bean>

@@ -13,7 +13,7 @@
 		<column name="groupName" />
 	</property>
 	
-	<set name="contacts" table="contact_group" >
+	<set name="contacts" table="contact_group" lazy="false">
 		<key column="idGroup"></key>
 		<many-to-many class="Contact" column="idContact"/>
 	</set>

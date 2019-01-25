@@ -6,13 +6,13 @@ import nanterre.miage.baptiste.model.Adresse;
 public class AdresseService {
 	private AdresseDAO adao;
 
-	public Adresse getOrCreate(String adresse) {
-		if(adresse != null && !"".equals(adresse)) {
-			Adresse adr = adao.getByAdresse(adresse);
+	public Adresse getOrCreate(Adresse adresse) {
+		if(adresse != null && !"".equals(adresse.getAdresse())) {
+			Adresse adr = adao.getByAdresse(adresse.getAdresse());
+			System.out.println("adresse != null");
 			if (adr == null) {
-				adr = new Adresse();
-				adr.setAdresse(adresse);
-				adr = adao.addAdresse(adr);
+				System.out.println("adr == null");
+				adr = adao.addAdresse(adresse);
 			}
 			return adr;	
 		}

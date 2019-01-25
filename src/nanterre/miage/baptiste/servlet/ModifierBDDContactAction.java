@@ -31,14 +31,15 @@ public class ModifierBDDContactAction extends Action {
 			ContactService cts = (ContactService)context.getBean("ContactService");
 			AdresseService ass =  (AdresseService)context.getBean("AdresseService");
 			TelephoneService tls =  (TelephoneService)context.getBean("TelephoneService");
-			
-			Adresse adresse = ass.getOrCreate(((ModifierBDDContactValidationForm) form).getAdresse());
+			Adresse adresse = new Adresse();
+			adresse.setAdresse(((ModifierBDDContactValidationForm) form).getAdresse());
+			adresse = ass.getOrCreate(adresse);
 			Contact contact = cts.differentiateFromForm((ModifierBDDContactValidationForm)form);
-			System.out.println(((ModifierBDDContactValidationForm) form).getIdTel());
 			tls.setContactToListTelId(((ModifierBDDContactValidationForm) form).getIdTel(), contact);
 			Set<Group> groups = gps.getAllFromTab(((ModifierBDDContactValidationForm)form).getIdGroup());
 			contact.setGroups(groups);
 			contact.setAdresse(adresse);
+			System.out.println(contact.getIdContact() + "---" + contact.getAdresse().getAdresse());
 			cts.updateContact(contact);
 			return mapping.findForward("success");
 		} catch (StaleObjectStateException e) {

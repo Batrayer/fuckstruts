@@ -29,10 +29,22 @@ public class TelephoneService {
 	}
 	public void setContactToListTelId(int[] ids, Contact c) {
 		if (ids != null) {
-			for(int i = 0; i<ids.length; i++) {
-				Telephone t = tdao.getTel(ids[i]);
-				t.setContact(c);
-				tdao.updateTel(t);
+			if(ids[0] != 0) {
+				for(int i = 0; i<ids.length; i++) {
+					Telephone t = tdao.getTel(ids[i]);
+					if(t != null) {
+						t.setContact(c);
+						tdao.updateTel(t);
+					}
+				}
+			} else {
+				List<Telephone> tels = tdao.getAllTel();
+				for(Telephone t: tels) {
+					if(t.getContact().getIdContact() == c.getIdContact()) {
+						t.setContact(null);
+						tdao.updateTel(t);
+					}
+				}
 			}
 		}
 	}

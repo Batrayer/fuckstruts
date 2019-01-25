@@ -24,8 +24,9 @@ public class AddContactAction extends Action {
 			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 			ContactService cts = (ContactService)context.getBean("ContactService");
 			AdresseService ass = (AdresseService)context.getBean("AdresseService");
-
-			Adresse a = ass.getOrCreate(((AddContactValidationForm) pForm).getAdresse()); 
+			Adresse a = new Adresse();
+			a.setAdresse(((AddContactValidationForm) pForm).getAdresse());
+			a = ass.getOrCreate(a); 
 			Contact c = cts.differentiateFromForm(((AddContactValidationForm) pForm));
 			c.setAdresse(a);
 			cts.addContact(c);

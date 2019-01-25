@@ -18,18 +18,31 @@ public class GroupService {
 		return gdao.getAllGroup();
 	}
 	public Set<Group> getAllFromTab(int[] ids) {
+		Set<Group> set = new HashSet<Group>();
 		if(ids != null) {
-			Set<Group> set = new HashSet<Group>();
-			for(int i = 0; i<ids.length; i++) {
-				set.add(gdao.getGroup(ids[i]));
+			if(ids[0] != 0) {
+				for(int i = 0; i<ids.length; i++) {
+					System.out.println("Add group: " + ids[i]);
+					set.add(gdao.getGroup(ids[i]));
+				}
 			}
-			return set;
+
 		}
-		return null;
+		return set;
 	}
-	public void addGroup(Group group) {
-		gdao.addGroup(group);
+	public Group addGroup(Group group) {
+		return gdao.addGroup(group);
 	}
+	
+	public Group addGroupIfNameNotExist(Group group) {
+		Group grp = gdao.getGroupByName(group.getGroupName()); 
+		if (grp == null) {
+			return this.addGroup(group);
+		}
+		return grp;
+		
+	}
+	
 	public Group getGroupFromId(int id) {
 		return gdao.getGroup(id);
 	}

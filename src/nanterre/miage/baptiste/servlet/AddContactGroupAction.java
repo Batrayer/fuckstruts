@@ -23,7 +23,7 @@ public class AddContactGroupAction extends Action {
 			ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 			GroupService gps = (GroupService)context.getBean("GroupService");
 			Group group = gps.getGroupFromForm((AddContactGroupValidationForm) pForm);
-			gps.addGroup(group);
+			gps.addGroupIfNameNotExist(group);
 			return mapping.findForward("success");
 
 		}catch(Exception e) {
